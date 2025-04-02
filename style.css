@@ -1,38 +1,81 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    background: url("./super-mario-fkq1k1pst35iab2c.jpg");
+    background: url("./resource/super-mario-fkq1k1pst35iab2c.jpg");
     background-size: cover;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 20px 0;
+    color: #ffeb3b;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #ffeb3b;
+}
+
+#reset-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#reset-button:hover {
+    background-color: #cc0000;
 }
 
 #board {
     width: 540px;
     height: 540px;
-    /* background-color: green;*/
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-
-    background: url("soil.png");
+    background: url("./resource/soil.png");
     background-size: cover;
     border: 3px solid whitesmoke;
     border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 #board div {
     width: 180px;
     height: 180px;
-    background-image: url("./pipe.png");
+    background-image: url("./resource/pipe.png");
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+#board div:hover {
+    transform: scale(1.05);
 }
 
 #board div img {
     width: 100px;
     height: 100px;
-
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    animation: pop-up 0.3s ease;
+}
+
+@keyframes pop-up {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }

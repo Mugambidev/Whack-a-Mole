@@ -3,23 +3,21 @@ let currPlantTile;
 let score = 0;
 let gameOver = false;
 
-window,onload = function() {
+window.onload = function() {
     setGame();
 }
 
 function setGame() {
-    //set up the grid for the game board in html
+    // Set up the grid for the game board in html
     for (let i = 0; i < 9; i++) {
-
-        let tile = document.createElement("div")
+        let tile = document.createElement("div");
         tile.id = i.toString();
         tile.addEventListener("click", selectTile);
         document.getElementById("board").appendChild(tile);
     } 
     
     setInterval(setMole, 1000);
-    setInterval(setPlant, 1000);
-
+    setInterval(setPlant, 2000); // Changed to 2000ms for slightly slower plant appearance
 }
 
 function getRandomTile() {
@@ -37,7 +35,7 @@ function setMole() {
     }
 
     let mole = document.createElement("img");
-    mole.src ="./monty-mole.png";
+    mole.src = "./resource/monty-mole.png";
 
     let num = getRandomTile();
     if (currPlantTile && currPlantTile.id == num) {
@@ -45,7 +43,6 @@ function setMole() {
     }
     currMoleTile = document.getElementById(num);
     currMoleTile.appendChild(mole);
-
 }
 
 function setPlant() {
@@ -56,7 +53,7 @@ function setPlant() {
         currPlantTile.innerHTML = "";
     }
     let plant = document.createElement("img");
-    plant.src = "./piranha-plant.png";
+    plant.src = "./resource/piranha-plant.png";
 
     let num = getRandomTile();
     if (currMoleTile && currMoleTile.id == num) {
@@ -67,13 +64,16 @@ function setPlant() {
     currPlantTile.appendChild(plant);
 }
 
-function selectTile(){
+function selectTile() {
     if (gameOver) {
         return;
     }
-    if(this == currMoleTile) {
-        score +=10;
+    if (this == currMoleTile) {
+        score += 10;
         document.getElementById("score").innerText = score.toString();
+        // Remove the mole immediately when clicked
+        currMoleTile.innerHTML = "";
+        currMoleTile = null;
     }
     else if (this == currPlantTile) {
         document.getElementById("score").innerText = "GAME OVER: " + score.toString();
